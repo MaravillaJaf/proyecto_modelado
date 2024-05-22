@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Métodos de Pago - Tienda</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 600px;
+            width: 100%;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background-color: #e7e7e7;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        li:hover {
+            background-color: #d0d0d0;
+        }
+        .form-container {
+            display: none;
+            margin-top: 20px;
+        }
+        .form-container form {
+            display: flex;
+            flex-direction: column;
+        }
+        .form-container label {
+            margin: 5px 0;
+        }
+        .form-container input {
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const paymentMethods = document.querySelectorAll('li');
+            const formContainer = document.querySelector('.form-container');
+
+            paymentMethods.forEach(method => {
+                method.addEventListener('click', function() {
+                    if (this.textContent.includes('Tarjeta de Crédito/Débito')) {
+                        formContainer.style.display = 'block';
+                    } else {
+                        formContainer.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Métodos de Pago</h1>
+        <ul>
+            <li>Tarjeta de Crédito/Débito: Aceptamos Visa, MasterCard, American Express y otras tarjetas principales.</li>
+            <li>PayPal: Pague de manera segura utilizando su cuenta de PayPal.</li>
+            <li>Transferencia Bancaria: Puede realizar una transferencia directamente a nuestra cuenta bancaria.</li>
+            <li>Pago en efectivo: Pague en efectivo (usted esta en la tienda).</li>
+        </ul>
+        <div class="form-container">
+            <form>
+                <label for="card-number">Número de Tarjeta:</label>
+                <input type="text" id="card-number" name="card-number" required>
+                <label for="card-holder">Nombre del Titular:</label>
+                <input type="text" id="card-holder" name="card-holder" required>
+                <label for="expiry-date">Fecha de Expiración:</label>
+                <input type="text" id="expiry-date" name="expiry-date" placeholder="MM/AA" required>
+                <label for="cvv">CVV:</label>
+                <input type="text" id="cvv" name="cvv" required>
+                <button type="submit">Pagar</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

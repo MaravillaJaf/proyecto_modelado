@@ -1,0 +1,60 @@
+create database pizzeria;
+
+create table registro(
+	nombre varchar(20),
+	id INT NOT NULL,
+	usuario int(9),
+	contraseña varchar(20),
+	primary key(usuario)
+);
+
+CREATE TABLE bebidas(
+	id_bebidas INT NOT NULL PRIMARY KEY,
+	nombre VARCHAR(128) NOT NULL,
+	precio INT(3) NOT NULL,
+	img varchar(20)
+);
+
+insert into bebidas (id_bebidas,nombre,precio,img) values ('1','Coca','25','Coca.jpg');
+insert into bebidas (id_bebidas,nombre,precio,img) values ('3','limonada','29','limonada.jpg');
+insert into bebidas (id_bebidas,nombre,precio,img) values ('4','bull','36','bull.jpg');
+insert into bebidas (id_bebidas,nombre,precio,img) values ('6','jumex','28','jumex.jpg');
+
+CREATE TABLE comidas(
+	id_comidas INT NOT NULL PRIMARY KEY,
+	nombre VARCHAR(128) NOT NULL,
+	precio INT(3) NOT NULL,
+	img varchar(20)
+);
+
+
+insert into comidas (id_comidas,nombre,precio,img) values ('101','torta','25','torta.jpg');
+insert into comidas (id_comidas,nombre,precio,img) values ('102','pizza peproni G','160','pizza_peperoni.jpeg');
+insert into comidas (id_comidas,nombre,precio,img) values ('105','hotcakes','40','hotcakes.jpg');
+
+
+/*
+CREATE TABLE compras(
+	usuario INT NOT NULL,
+	id INT NOT NULL AUTO_INCREMENT,
+	cantidad INT NOT NULL,
+	FOREIGN KEY(usuario) REFERENCES usuario(usuario),
+	FOREIGN KEY(id) REFERENCES productos(id), 
+	PRIMARY KEY(usuario,id)
+)
+*/
+
+CREATE TABLE compras(
+	id_compra INT NOT NULL AUTO_INCREMENT,
+	usuario INT NOT NULL,
+	id_comidas INT NOT NULL,
+	id_bebidas INT NOT NULL,
+	cantidad INT NOT NULL,
+	precio INT NOT NULL,
+	imagen VARCHAR(20),
+	FOREIGN KEY(usuario) REFERENCES registro(usuario),
+	FOREIGN KEY(id_comidas) REFERENCES comidas(id_comidas),
+	FOREIGN KEY(id_bebidas) REFERENCES bebidas(id_bebidas),
+	PRIMARY KEY(id_compra)
+);
+
